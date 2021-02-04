@@ -30,17 +30,10 @@ struct MemoryGame<CardContent> {
         cards = Array<Card>()
         for pairIndex in 0..<numberOfPairsOfCards {
             let content = cardContentFactory(pairIndex)
-            if cards.isEmpty {
-                cards.append(Card(content: content, id: pairIndex * 2))
-                cards.insert(Card(content: content, id: pairIndex * 2 + 1), at: Int.random(in: 0..<cards.count))
-            } else {
-                cards.insert(Card(content: content, id: pairIndex * 2), at: Int.random(in: 0..<cards.count))
-                cards.insert(Card(content: content, id: pairIndex * 2 + 1), at: Int.random(in: 0..<cards.count))
-            }
-            
-//            cards.append(Card(content: content, id: pairIndex * 2))
-//            cards.append(Card(content: content, id: pairIndex * 2 + 1))
+            cards.append(Card(content: content, id: pairIndex * 2))
+            cards.append(Card(content: content, id: pairIndex * 2 + 1))
         }
+        cards.shuffle()
     }
     
     struct Card: Identifiable {
