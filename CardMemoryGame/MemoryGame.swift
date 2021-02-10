@@ -8,6 +8,7 @@
 import Foundation
 
 struct MemoryGame<CardContent> where CardContent: Equatable {
+    
     var cards: Array<Card>
     
     var indexOfTheOneAndOnlyFaceUpCard: Int? {

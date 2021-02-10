@@ -21,9 +21,11 @@ struct EmojiMemoryGameView: View {
         .padding()
         .foregroundColor(Color.orange)
     }
+    
 }
 
 struct CardView: View {
+    
     var card: MemoryGame<String>.Card
     
     var body: some View {
@@ -56,11 +58,14 @@ struct CardView: View {
     func fontSize(for size: CGSize) -> CGFloat {
         min(size.width, size.height) * fontScaleFactor
     }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
+    
     static var previews: some View {
         EmojiMemoryGameView(viewModel: EmojiMemoryGame())
     }
+    
 }
 

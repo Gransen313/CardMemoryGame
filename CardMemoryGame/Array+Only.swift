@@ -8,7 +8,9 @@
 import Foundation
 
 extension Array {
+    
     var only: Element? {
         self.count == 1 ? first : nil
     }
+    
 }
