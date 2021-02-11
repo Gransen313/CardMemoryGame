@@ -17,6 +17,7 @@
 		9B6D81BB25CD58C700C4A829 /* Array+Only.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6D81BA25CD58C700C4A829 /* Array+Only.swift */; };
 		9BD6147E25C969A8003B551B /* MemoryGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD6147D25C969A8003B551B /* MemoryGame.swift */; };
 		9BD6148125C971B9003B551B /* EmojiMemoryGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD6148025C971B9003B551B /* EmojiMemoryGame.swift */; };
+		9BD9899B25D3E550006250D5 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD9899A25D3E550006250D5 /* Theme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		9B6D81BA25CD58C700C4A829 /* Array+Only.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Only.swift"; sourceTree = "<group>"; };
 		9BD6147D25C969A8003B551B /* MemoryGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGame.swift; sourceTree = "<group>"; };
 		9BD6148025C971B9003B551B /* EmojiMemoryGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiMemoryGame.swift; sourceTree = "<group>"; };
+		9BD9899A25D3E550006250D5 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				9B311A6425C9430F00AF9C06 /* EmojiMemoryGameView.swift */,
 				9BD6148025C971B9003B551B /* EmojiMemoryGame.swift */,
 				9BD6147D25C969A8003B551B /* MemoryGame.swift */,
+				9BD9899A25D3E550006250D5 /* Theme.swift */,
 				9B311A6625C9431200AF9C06 /* Assets.xcassets */,
 				9B311A6B25C9431200AF9C06 /* Info.plist */,
 				9B311A6825C9431200AF9C06 /* Preview Content */,
@@ -156,6 +159,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BD9899B25D3E550006250D5 /* Theme.swift in Sources */,
 				9BD6147E25C969A8003B551B /* MemoryGame.swift in Sources */,
 				9B311A6525C9430F00AF9C06 /* EmojiMemoryGameView.swift in Sources */,
 				9B311A6325C9430F00AF9C06 /* CardMemoryGameApp.swift in Sources */,

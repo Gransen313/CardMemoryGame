@@ -10,6 +10,8 @@ import Foundation
 struct MemoryGame<CardContent> where CardContent: Equatable {
     
     var cards: Array<Card>
+    var theme: Theme
+    var score: Int = 0
     
     var indexOfTheOneAndOnlyFaceUpCard: Int? {
         get { cards.indices.filter { cards[$0].isFaceUp }.only }
@@ -26,6 +28,18 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
                 if cards[chosenIndex].content == cards[potentialMatchIndex].content {
                     cards[chosenIndex].isMatched = true
                     cards[potentialMatchIndex].isMatched = true
+                    score += 2
+                } else {
+                    if cards[chosenIndex].isAlreadySeen {
+                        score -= 1
+                    } else {
+                        cards[chosenIndex].isAlreadySeen = true
+                    }
+                    if cards[potentialMatchIndex].isAlreadySeen {
+                        score -= 1
+                    } else {
+                        cards[potentialMatchIndex].isAlreadySeen = true
+                    }
                 }
                 cards[chosenIndex].isFaceUp = true
             } else {
@@ -34,9 +48,10 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         }
     }
     
-    init(numberOfPairsOfCards: Int, cardContentFactory: (Int) -> CardContent) {
+    init(theme: Theme, cardContentFactory: (Int) -> CardContent) {
+        self.theme = theme
         cards = Array<Card>()
-        for pairIndex in 0..<numberOfPairsOfCards {
+        for pairIndex in 0..<theme.numberOfPairsOfCards {
             let content = cardContentFactory(pairIndex)
             cards.append(Card(content: content, id: pairIndex * 2))
             cards.append(Card(content: content, id: pairIndex * 2 + 1))
@@ -47,6 +62,7 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
     struct Card: Identifiable {
         var isFaceUp: Bool = false
         var isMatched: Bool = false
+        var isAlreadySeen: Bool = false
         var content: CardContent
         var id: Int
     }
