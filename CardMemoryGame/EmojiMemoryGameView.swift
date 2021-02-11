@@ -16,32 +16,40 @@ struct EmojiMemoryGameView: View {
             HStack {
                 Text(viewModel.theme.name)
                 Spacer()
-                Text("Score: \(viewModel.score)")
+                Text(scoreConstant + String(viewModel.score))
                 Spacer()
-                Button(" New Game ", action: viewModel.startNextGame)
-                    .overlay(RoundedRectangle(cornerRadius: 20.0)
-                                .stroke(lineWidth: 2.0)
-                                .foregroundColor(viewModel.theme.color)
-                                .padding(-5))
+                Button(newGameConstant, action: viewModel.startNextGame)
+                    .overlay(RoundedRectangle(cornerRadius: cornerRadius)
+                                .stroke(lineWidth: lineWidth)
+                                .foregroundColor(viewModel.theme.colors.first)
+                                .padding(buttonBoarderPadding))
             }
-                .foregroundColor(viewModel.theme.color)
+            .foregroundColor(viewModel.theme.colors.first)
             Grid(viewModel.cards) { card in
-                CardView(card: card).onTapGesture {
+                CardView(card: card, gradientColors: viewModel.theme.colors).onTapGesture {
                     viewModel.choose(card: card)
                 }
-                .padding(5)
+                .padding(cardViewPadding)
             }
             .padding()
-            .foregroundColor(viewModel.theme.color)
         }
         .padding()
     }
+    //MARK: - Constants
+    
+    let scoreConstant = "Score: "
+    let newGameConstant = " New Game "
+    let cornerRadius: CGFloat = 20.0
+    let lineWidth: CGFloat = 2.0
+    let buttonBoarderPadding: CGFloat = -5.0
+    let cardViewPadding: CGFloat = 5.0
     
 }
 
 struct CardView: View {
     
     var card: MemoryGame<String>.Card
+    var gradientColors: [Color]
     
     var body: some View {
         GeometryReader { geometry in
@@ -57,7 +65,7 @@ struct CardView: View {
                 Text(card.content)
             } else {
                 if !card.isMatched {
-                    RoundedRectangle(cornerRadius: cornerRadius).fill()
+                    RoundedRectangle(cornerRadius: cornerRadius).fill(LinearGradient(gradient: Gradient(colors: gradientColors), startPoint: .top, endPoint: .bottom))
                 }
             }
         }

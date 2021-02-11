@@ -12,7 +12,7 @@ struct Theme {
     var name: String
     var emogies: [String]
     var numberOfPairsOfCards: Int
-    var color: Color
+    var colors: [Color]
     
 }
 
@@ -22,12 +22,12 @@ enum ThemeEnum: CaseIterable {
     
     var theme: Theme {
         switch self {
-        case .animals: return Theme(name: "Animals", emogies: ThemeEmogies.animalEmojies, numberOfPairsOfCards: 4, color: .red)
-        case .fruits: return Theme(name: "Fruits", emogies: ThemeEmogies.fruitEmojies, numberOfPairsOfCards: 6, color: .green)
-        case .sports: return Theme(name: "Sports", emogies: ThemeEmogies.sportEmojies, numberOfPairsOfCards: 9, color: .yellow)
-        case .transports: return Theme(name: "Transports", emogies: ThemeEmogies.transportEmogies, numberOfPairsOfCards: 12, color: .gray)
-        case .flags: return Theme(name: "Flags", emogies: ThemeEmogies.flagEmogies, numberOfPairsOfCards: 16, color: .pink)
-        case .hands: return Theme(name: "Hands", emogies: ThemeEmogies.handEmojies, numberOfPairsOfCards: Int.random(in: 24...32), color: .orange)
+        case .animals: return Theme(name: "Animals", emogies: ThemeEmogies.animalEmojies, numberOfPairsOfCards: 4, colors: [.red, .orange])
+        case .fruits: return Theme(name: "Fruits", emogies: ThemeEmogies.fruitEmojies, numberOfPairsOfCards: 6, colors: [.green, .orange])
+        case .sports: return Theme(name: "Sports", emogies: ThemeEmogies.sportEmojies, numberOfPairsOfCards: 9, colors: [.yellow, .orange])
+        case .transports: return Theme(name: "Transports", emogies: ThemeEmogies.transportEmogies, numberOfPairsOfCards: 12, colors: [.blue, .orange])
+        case .flags: return Theme(name: "Flags", emogies: ThemeEmogies.flagEmogies, numberOfPairsOfCards: 16, colors: [.pink, .orange])
+        case .hands: return Theme(name: "Hands", emogies: ThemeEmogies.handEmojies, numberOfPairsOfCards: Int.random(in: 24...32), colors: [.purple, .orange])
         }
     }
     
