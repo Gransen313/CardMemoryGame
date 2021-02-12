@@ -32,17 +32,18 @@ struct EmojiMemoryGameView: View {
                 .padding(cardViewPadding)
             }
             .padding()
+            .foregroundColor(viewModel.theme.colors.first)
         }
         .padding()
     }
-    //MARK: - Constants
+    //MARK: - Helpfull constants
     
-    let scoreConstant = "Score: "
-    let newGameConstant = " New Game "
-    let cornerRadius: CGFloat = 20.0
-    let lineWidth: CGFloat = 2.0
-    let buttonBoarderPadding: CGFloat = -5.0
-    let cardViewPadding: CGFloat = 5.0
+    private let scoreConstant = "Score: "
+    private let newGameConstant = " New Game "
+    private let cornerRadius: CGFloat = 20.0
+    private let lineWidth: CGFloat = 2.0
+    private let buttonBoarderPadding: CGFloat = -5.0
+    private let cardViewPadding: CGFloat = 5.0
     
 }
 
@@ -57,28 +58,23 @@ struct CardView: View {
         }
     }
     
-    func body(for size: CGSize) -> some View {
-        ZStack {
-            if card.isFaceUp {
-                RoundedRectangle(cornerRadius: cornerRadius).fill(Color.white)
-                RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
+    @ViewBuilder
+    private func body(for size: CGSize) -> some View {
+        if card.isFaceUp || !card.isMatched {
+            ZStack {
+                Pie(startAngle: Angle(degrees: -90), endAngle: Angle(degrees: 30))
+                    .padding(5).opacity(0.4)
                 Text(card.content)
-            } else {
-                if !card.isMatched {
-                    RoundedRectangle(cornerRadius: cornerRadius).fill(LinearGradient(gradient: Gradient(colors: gradientColors), startPoint: .top, endPoint: .bottom))
-                }
+                    .font(Font.system(size: fontSize(for: size)))
             }
+            .cardify(isFaceUp: card.isFaceUp)
         }
-        .font(Font.system(size: fontSize(for: size)))
     }
     
     //MARK: - Drawing contstants
     
-    let cornerRadius: CGFloat = 10.0
-    let edgeLineWidth: CGFloat = 3.0
-    let fontScaleFactor: CGFloat = 0.75
-    
-    func fontSize(for size: CGSize) -> CGFloat {
+    private let fontScaleFactor: CGFloat = 0.6
+    private func fontSize(for size: CGSize) -> CGFloat {
         min(size.width, size.height) * fontScaleFactor
     }
     
@@ -87,7 +83,10 @@ struct CardView: View {
 struct ContentView_Previews: PreviewProvider {
     
     static var previews: some View {
-        EmojiMemoryGameView(viewModel: EmojiMemoryGame())
+        let game = EmojiMemoryGame()
+        game.choose(card: game.cards[0])
+        return EmojiMemoryGameView(viewModel: game)
+//        EmojiMemoryGameView(viewModel: EmojiMemoryGame())
     }
     
 }
