@@ -30,6 +30,7 @@ struct EmojiMemoryGameView: View {
                     viewModel.choose(card: card)
                 }
                 .padding(cardViewPadding)
+                
             }
             .padding()
             .foregroundColor(viewModel.theme.colors.first)
@@ -67,7 +68,7 @@ struct CardView: View {
                 Text(card.content)
                     .font(Font.system(size: fontSize(for: size)))
             }
-            .cardify(isFaceUp: card.isFaceUp)
+            .cardify(isFaceUp: card.isFaceUp, gradientColors: gradientColors)
         }
     }
     

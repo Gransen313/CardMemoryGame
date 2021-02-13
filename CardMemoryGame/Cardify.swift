@@ -10,6 +10,7 @@ import SwiftUI
 struct Cardify: ViewModifier {
     
     var isFaceUp: Bool
+    var gradientColors: [Color]
     
     func body(content: Content) -> some View {
         ZStack {
@@ -18,8 +19,7 @@ struct Cardify: ViewModifier {
                 RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
                 content
             } else {
-                    RoundedRectangle(cornerRadius: cornerRadius).fill()
-//                (LinearGradient(gradient: Gradient(colors: gradientColors), startPoint: .top, endPoint: .bottom))
+                RoundedRectangle(cornerRadius: cornerRadius).fill(LinearGradient(gradient: Gradient(colors: gradientColors), startPoint: .top, endPoint: .bottom))
             }
         }
     }
@@ -30,7 +30,7 @@ struct Cardify: ViewModifier {
 }
 
 extension View {
-    func cardify(isFaceUp: Bool) -> some View {
-        self.modifier(Cardify(isFaceUp: isFaceUp))
+    func cardify(isFaceUp: Bool, gradientColors: [Color]) -> some View {
+        self.modifier(Cardify(isFaceUp: isFaceUp, gradientColors: gradientColors))
     }
 }
