@@ -25,21 +25,20 @@ struct EmojiMemoryGameView: View {
                 })
                     .overlay(RoundedRectangle(cornerRadius: cornerRadius)
                                 .stroke(lineWidth: lineWidth)
-                                .foregroundColor(viewModel.theme.colors.first)
+                                .foregroundColor(.gray)
                                 .padding(buttonBoarderPadding))
             }
-            .foregroundColor(viewModel.theme.colors.first)
+            .foregroundColor(.black)
             Grid(viewModel.cards) { card in
-                CardView(card: card, gradientColors: viewModel.theme.colors).onTapGesture {
+                CardView(card: card, cardColor: Color(viewModel.theme.color)).onTapGesture {
                     withAnimation(.linear) {
                         viewModel.choose(card: card)
                     }
                 }
                 .padding(cardViewPadding)
-                
             }
             .padding()
-            .foregroundColor(viewModel.theme.colors.first)
+            .foregroundColor(Color(viewModel.theme.color))
         }
         .padding()
     }
@@ -57,7 +56,13 @@ struct EmojiMemoryGameView: View {
 struct CardView: View {
     
     var card: MemoryGame<String>.Card
-    var gradientColors: [Color]
+    var cardColor: Color
+    var gradientColors: [Color] {
+        var colors: [Color] = []
+        colors.append(cardColor)
+        colors.append(.orange)
+        return colors
+    }
     
     var body: some View {
         GeometryReader { geometry in
@@ -97,6 +102,7 @@ struct CardView: View {
             }
             .cardify(isFaceUp: card.isFaceUp, gradientColors: gradientColors)
             .transition(AnyTransition.scale)
+            
         }
     }
     

@@ -14,6 +14,7 @@ class EmojiMemoryGame: ObservableObject {
     private static func createMemoryGame() -> MemoryGame<String> {
         let themeOptional = ThemeEnum.allCases.randomElement()?.theme
         let theme = themeOptional != nil ? themeOptional! : ThemeEnum.animals.theme
+        print("json: \(theme.json?.utf8 ?? "nil")")
         let emojies = theme.emogies
         return MemoryGame<String>.init(theme: theme) { pairIndex in
             emojies[pairIndex]

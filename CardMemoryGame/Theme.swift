@@ -7,12 +7,16 @@
 
 import SwiftUI
 
-struct Theme {
+struct Theme: Codable {
     
     var name: String
     var emogies: [String]
     var numberOfPairsOfCards: Int
-    var colors: [Color]
+    var color: UIColor.RGB
+    
+    var json: Data? {
+        return try? JSONEncoder().encode(self)
+    }
     
 }
 
@@ -22,12 +26,12 @@ enum ThemeEnum: CaseIterable {
     
     var theme: Theme {
         switch self {
-        case .animals: return Theme(name: "Animals", emogies: ThemeEmogies.animalEmojies, numberOfPairsOfCards: 4, colors: [.red, .orange])
-        case .fruits: return Theme(name: "Fruits", emogies: ThemeEmogies.fruitEmojies, numberOfPairsOfCards: 6, colors: [.green, .orange])
-        case .sports: return Theme(name: "Sports", emogies: ThemeEmogies.sportEmojies, numberOfPairsOfCards: 9, colors: [.yellow, .orange])
-        case .transports: return Theme(name: "Transports", emogies: ThemeEmogies.transportEmogies, numberOfPairsOfCards: 12, colors: [.blue, .orange])
-        case .flags: return Theme(name: "Flags", emogies: ThemeEmogies.flagEmogies, numberOfPairsOfCards: 16, colors: [.pink, .orange])
-        case .hands: return Theme(name: "Hands", emogies: ThemeEmogies.handEmojies, numberOfPairsOfCards: Int.random(in: 25...25), colors: [.purple, .orange])
+        case .animals: return Theme(name: "Animals", emogies: ThemeEmogies.animalEmojies, numberOfPairsOfCards: 4, color: .init(red: 255, green: 255, blue: 0, alpha: 1))
+        case .fruits: return Theme(name: "Fruits", emogies: ThemeEmogies.fruitEmojies, numberOfPairsOfCards: 6, color: .init(red: 0, green: 255, blue: 255, alpha: 1))
+        case .sports: return Theme(name: "Sports", emogies: ThemeEmogies.sportEmojies, numberOfPairsOfCards: 9, color: .init(red: 255, green: 0, blue: 255, alpha: 1))
+        case .transports: return Theme(name: "Transports", emogies: ThemeEmogies.transportEmogies, numberOfPairsOfCards: 12, color: .init(red: 0, green: 255, blue: 0, alpha: 1))
+        case .flags: return Theme(name: "Flags", emogies: ThemeEmogies.flagEmogies, numberOfPairsOfCards: 16, color: .init(red: 0, green: 0, blue: 255, alpha: 1))
+        case .hands: return Theme(name: "Hands", emogies: ThemeEmogies.handEmojies, numberOfPairsOfCards: 25, color: .init(red: 255, green: 0, blue: 0, alpha: 1))
         }
     }
     
