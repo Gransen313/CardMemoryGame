@@ -12,7 +12,8 @@ struct CardMemoryGameApp: App {
     
     var body: some Scene {
         WindowGroup {
-            EmojiMemoryGameView(viewModel: EmojiMemoryGame())
+//            EmojiMemoryGameView(viewModel: EmojiMemoryGame())
+            ThemesListView(themes: Themes())
         }
     }
     

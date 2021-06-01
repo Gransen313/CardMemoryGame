@@ -14,11 +14,21 @@ class EmojiMemoryGame: ObservableObject {
     private static func createMemoryGame() -> MemoryGame<String> {
         let themeOptional = ThemeEnum.allCases.randomElement()?.theme
         let theme = themeOptional != nil ? themeOptional! : ThemeEnum.animals.theme
-        print("json: \(theme.json?.utf8 ?? "nil")")
         let emojies = theme.emogies
         return MemoryGame<String>.init(theme: theme) { pairIndex in
             emojies[pairIndex]
         }
+    }
+    
+    private func createMemoryGame(theme: Theme) -> MemoryGame<String> {
+        let emojies = theme.emogies
+        return MemoryGame<String>.init(theme: theme) { pairIndex in
+            emojies[pairIndex]
+        }
+    }
+    
+    init(theme: Theme) {
+        model = createMemoryGame(theme: theme)
     }
     
     //MARK: - Access to Model
@@ -38,8 +48,8 @@ class EmojiMemoryGame: ObservableObject {
     func choose(card: MemoryGame<String>.Card) {
         model.choose(card: card)
     }
-    func resetGame() {
-        model = EmojiMemoryGame.createMemoryGame()
+    func resetGame(theme: Theme) {
+        model = createMemoryGame(theme: theme)
     }
     
 }

@@ -20,7 +20,7 @@ struct EmojiMemoryGameView: View {
                 Spacer()
                 Button(newGameConstant, action: {
                     withAnimation(.easeInOut) {
-                        self.viewModel.resetGame()
+                        self.viewModel.resetGame(theme: viewModel.theme)
                     }
                 })
                     .overlay(RoundedRectangle(cornerRadius: cornerRadius)
@@ -115,14 +115,14 @@ struct CardView: View {
     
 }
 
-struct ContentView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        let game = EmojiMemoryGame()
-        game.choose(card: game.cards[0])
-        return EmojiMemoryGameView(viewModel: game)
+//struct ContentView_Previews: PreviewProvider {
+//
+//    static var previews: some View {
+//        let game = EmojiMemoryGame()
+//        game.choose(card: game.cards[0])
+//        return EmojiMemoryGameView(viewModel: game)
 //        EmojiMemoryGameView(viewModel: EmojiMemoryGame())
-    }
-    
-}
+//    }
+//    
+//}
 
